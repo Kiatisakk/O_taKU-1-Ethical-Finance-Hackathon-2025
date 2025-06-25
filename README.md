@@ -1,0 +1,1 @@
+# O_taKU-1-Ethical-Finance-Hackathon-2025

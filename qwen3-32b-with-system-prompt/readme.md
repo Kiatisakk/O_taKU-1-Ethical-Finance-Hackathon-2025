@@ -5,6 +5,7 @@ This project employs the `Qwen3-32B` large language model (LLM) to answer questi
 ## Project Structure
 
 - `qwen-vllm.ipynb`: Main Jupyter notebook for running the pipeline.
+
 - `README.md`: This file, providing an overview of the project.
 
 ## Design Overview
@@ -21,15 +22,17 @@ Our agent is designed with a focus on prompt engineering:
 ## Pipeline Architecture
 
 1. **Model Configuration**
-    - **Model:**: Qwen/Qwen3-32B-AWQ (quantized for efficiency)
+    - **Model:** Qwen/Qwen3-32B-AWQ (quantized for efficiency)
 
     - **Inference:** vLLM for high-throughput, low-latency inference
 
     - **Context Length:** `16,384` tokens  
 
-    - **Sampling:** `Temperature 0.6 `, `min_p = 0`, `top_p = 0.95`, `top_k = 20`
+    - **Sampling:** `Temperature 0.6`, `min_p = 0`, `top_p = 0.95`, `top_k = 20`
 
-2. **System Prompt**: Defines strict formatting and behavioral rules:
+2. **System Prompt** 
+
+   Defines strict formatting and behavioral rules:
 
     - Always provide an answer
 
@@ -38,25 +41,28 @@ Our agent is designed with a focus on prompt engineering:
     - For multiple-choice: respond with A/B/C/D only
 
     - For price movement: use exact keywords (Rise, Fall, ขึ้น, ลง, etc.)
+
     - Includes few-shot examples to guide model behavior
 
-3. Input Preparation
+3. **Input Preparation**
     - Reads queries from the competition test file (test.csv)
 
     - Applies a standardized prompt template encouraging step-by-step reasoning
 
     - Constructs chat-style input with system and user messages using Hugging Face's tokenizer
 
-4. Response Generation
-    - Uses vllm.LLM.generate() with the built input prompts
+4. **Response Generation**
+    - Uses `vllm.LLM.generate()` with the built input prompts
 
     - Outputs are parsed to extract:
 
       - Full response
 
-      - Final answer (via regex over <final_answer> XML tag)
+      - Final answer (via regex over `<final_answer>` XML tag)
 
-5. Output Handling: Saves results in two files:
+5. **Output Handling**
+   
+   Saves results in two files:
 
     - `output.csv`: all raw responses (for observation)  
 
@@ -64,14 +70,14 @@ Our agent is designed with a focus on prompt engineering:
 
 ## Usage
 
-1. Install pytorch with CUDA support:
+1. **Install pytorch with CUDA support:**
    ```bash
    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
    ```
 
-2. Prepare Data: Place the `test.csv` file in the same directory as the notebook.
+2. **Prepare Data:** Place the `test.csv` file in the same directory as the notebook.
 
-3. Run the Jupyter notebook: Run `qwen-vllm.ipynb` to execute the pipeline. The notebook will handle remaining dependencies installation and model loading steps.
+3. **Run the Jupyter notebook:** Run `qwen-vllm.ipynb` to execute the pipeline. The notebook will handle remaining dependencies installation and model loading steps.
 
 ---
 

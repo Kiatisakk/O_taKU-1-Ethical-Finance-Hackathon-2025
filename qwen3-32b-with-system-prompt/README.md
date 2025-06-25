@@ -66,7 +66,7 @@ Our agent is designed with a focus on prompt engineering:
 
     - `output.csv`: all raw responses (for observation)  
 
-    - `submit.csv`: Kaggle-formatted (`id,answer`)
+    - `submit.csv`: Kaggle-formatted (`id`, `answer`)
 
 ## Usage
 
